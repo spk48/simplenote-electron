@@ -10,8 +10,13 @@ declare global {
     electron: {
       isMac: boolean;
       receive(command: 'appCommand', callback: (event: any) => any);
+      receive(
+        command: 'notesImported',
+        callback: (event: any, notes: array) => any
+      );
       receive(command: 'wpLogin', callback: (event: any) => any);
       send(command: 'clearCookies'): void;
+      send(command: 'importNotes', filePath: string);
       send(command: 'setAutoHideMenuBar', newValue: boolean);
       send(command: 'settingsUpdate', settings: S.State['settings']);
       send(command: 'wpLogin', url: string);

@@ -6,6 +6,7 @@ contextBridge.exposeInMainWorld('electron', {
     let validChannels = [
       'appCommand',
       'clearCookies',
+      'importNotes',
       'setAutoHideMenuBar',
       'settingsUpdate',
       'wpLogin',
@@ -15,7 +16,7 @@ contextBridge.exposeInMainWorld('electron', {
     }
   },
   receive: (channel, func) => {
-    let validChannels = ['appCommand', 'wpLogin'];
+    let validChannels = ['appCommand', 'wpLogin', 'notesImported'];
     if (validChannels.includes(channel)) {
       // Deliberately strip event as it includes `sender`
       ipcRenderer.on(channel, (event, ...args) => {
