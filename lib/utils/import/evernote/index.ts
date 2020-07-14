@@ -40,7 +40,7 @@ class EvernoteImporter extends EventEmitter {
       this.emit('status', 'complete', notes.length);
     };
 
-    window.electron?.receive('notesImported', addNotesToApp);
+    window.electron?.once('notesImported', addNotesToApp);
     window.electron?.send('importNotes', file.path);
   };
 

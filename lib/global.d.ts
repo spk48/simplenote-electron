@@ -9,11 +9,11 @@ declare global {
     analyticsEnabled: boolean;
     electron: {
       isMac: boolean;
-      receive(command: 'appCommand', callback: (event: any) => any);
-      receive(
+      once(
         command: 'notesImported',
         callback: (event: any, notes: array) => any
       );
+      receive(command: 'appCommand', callback: (event: any) => any);
       receive(command: 'wpLogin', callback: (event: any) => any);
       send(command: 'clearCookies'): void;
       send(command: 'importNotes', filePath: string);
