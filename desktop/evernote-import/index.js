@@ -25,7 +25,9 @@ const importNotes = (filePath, mainWindow) => {
   let currentNote = {}; // The current note we are parsing
   let importedNoteCount = 0;
 
-  saxStream.on('error', function (err) {});
+  saxStream.on('error', function () {
+    mainWindow.webContents.send('notesImported', []);
+  });
 
   saxStream.on('opentag', (node) => {
     // The <note> tag signifies that we should parse another note

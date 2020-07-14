@@ -34,6 +34,14 @@ class EvernoteImporter extends EventEmitter {
     });
 
     const addNotesToApp = (notes) => {
+      if (!notes.length) {
+        this.emit(
+          'status',
+          'error',
+          'Error processing Evernote data or it did not contain any notes.'
+        );
+        return;
+      }
       notes.forEach((note) => {
         coreImporter.importNote(note, this.options);
       });
